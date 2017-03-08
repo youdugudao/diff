@@ -14,7 +14,8 @@ cd path/to/main
 go run main.go
 ```
 
-## 请求
+## 接口
+### diff(对比两个文章，先以段为单位，再以子为单位)
 - header头：
 Authorization: md5(password+当前时间戳) `当前时间戳精确到秒`
 - request：
@@ -24,3 +25,5 @@ Authorization: md5(password+当前时间戳) `当前时间戳精确到秒`
     "str2":"nihalod"
 }
 ```
+### diff/one（对比两文章片段，以字为单位）
+同diff
