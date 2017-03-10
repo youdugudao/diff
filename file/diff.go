@@ -59,12 +59,12 @@ func _init(string1 string, string2 string, sep string) (err error) {
 		str1 = strings.Split(string1, "\n")
 		str2 = strings.Split(string2, "\n")
 		for k, v := range str1 {
-			if v == "" {
+			if strings.TrimSpace(v) == "" {
 				str1 = append(str1[:k], str1[k+1:]...)
 			}
 		}
 		for k, v := range str2 {
-			if v == "" {
+			if strings.TrimSpace(v) == "" {
 				str2 = append(str2[:k], str2[k+1:]...)
 			}
 		}
@@ -144,11 +144,6 @@ func getTraceBack(sep string) {
 	}
 	newStr1 = []string{}
 	newStr2 = []string{}
-	//if nowSep == SepString {
-	//	fmt.Println(len(str1))
-	//	fmt.Println(len(str2))
-	//	fmt.Println(finalCells)
-	//}
 	var y, x, i, preX, preY int16
 	for i = int16(len(finalCells) - 1); i >= 0; i-- {
 		x = finalCells[i][0]
@@ -182,6 +177,20 @@ func getTraceBack(sep string) {
 }
 
 func Comparison(string1 string, string2 string, sep string) (str1 []string, str2 []string, err error) {
+	s1 := strings.Split(string1, "\n")
+	s2 := strings.Split(string2, "\n")
+	for k := range s1 {
+		if strings.TrimSpace(s1[k]) == " " {
+			s1 = append(s1[:k], s1[k+1:]...)
+		}
+	}
+	for k := range s2 {
+		if strings.TrimSpace(s2[k]) == " " {
+			s2 = append(s2[:k], s2[k+1:]...)
+		}
+	}
+	string1 = strings.Join(s1, "\n")
+	string2 = strings.Join(s2, "\n")
 	if sep == SepString {
 		switch {
 		case string1 == " " && string2 == " ":
